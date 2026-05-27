@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon's Best-Selling Beauty Products You Need Right Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    :root {
+      --blush: #f7c5c5 !important;
+      --rose: #e8647a !important;
+      --deep: #1a0a0f !important;
+      --cream: #fdf6f0 !important;
+      --muted: #8a7070 !important;
+      --card-bg: #ffffff !important;
+      --border: #f0dede !important;
+    }
+
+    html {
+      scroll-behavior: smooth !important;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif !important;
+      background-color: var(--cream) !important;
+      color: var(--deep) !important;
+      line-height: 1.7 !important;
+      min-height: 100vh !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #fff0f3 0%, #fce4ec 50%, #f8bbd0 100%) !important;
+      padding: 80px 24px 60px !important;
+      text-align: center !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .hero::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -60px !important;
+      right: -60px !important;
+      width: 300px !important;
+      height: 300px !important;
+      border-radius: 50% !important;
+      background: radial-gradient(circle, rgba(232,100,122,0.15), transparent 70%) !important;
+      pointer-events: none !important;
+    }
+
+    .hero::after {
+      content: '' !important;
+      position: absolute !important;
+      bottom: -80px !important;
+      left: -40px !important;
+      width: 250px !important;
+      height: 250px !important;
+      border-radius: 50% !important;
+      background: radial-gradient(circle, rgba(247,197,197,0.3), transparent 70%) !important;
+      pointer-events: none !important;
+    }
+
+    .badge {
+      display: inline-block !important;
+      background-color: var(--rose) !important;
+      color: #fff !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2.5px !important;
+      text-transform: uppercase !important;
+      padding: 6px 18px !important;
+      border-radius: 100px !important;
+      margin-bottom: 22px !important;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif !important;
+      font-size: clamp(2rem, 5vw, 3.4rem) !important;
+      font-weight: 700 !important;
+      color: var(--deep) !important;
+      line-height: 1.2 !important;
+      max-width: 720px !important;
+      margin: 0 auto 18px !important;
+    }
+
+    .hero h1 em {
+      font-style: italic !important;
+      color: var(--rose) !important;
+    }
+
+    .hero p {
+      font-size: 1.05rem !important;
+      color: var(--muted) !important;
+      max-width: 540px !important;
+      margin: 0 auto !important;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px !important;
+      margin: 0 auto !important;
+      padding: 60px 24px !important;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--card-bg) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      margin-bottom: 48px !important;
+      display: grid !important;
+      grid-template-columns: 260px 1fr !important;
+      box-shadow: 0 4px 24px rgba(232,100,122,0.07) !important;
+      transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 40px rgba(232,100,122,0.15) !important;
+      transform: translateY(-3px) !important;
+    }
+
+    .product-card .img-wrap {
+      background: linear-gradient(145deg, #fff5f7, #ffe8ed) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 32px !important;
+      min-height: 260px !important;
+    }
+
+    .product-card .img-wrap img {
+      width: 100% !important;
+      max-width: 180px !important;
+      height: 200px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+
+    .product-card .content {
+      padding: 36px 36px 36px 30px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+
+    .product-number {
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2.5px !important;
+      text-transform: uppercase !important;
+      color: var(--rose) !important;
+      margin-bottom: 8px !important;
+    }
+
+    .product-card h2 {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.45rem !important;
+      font-weight: 700 !important;
+      color: var(--deep) !important;
+      line-height: 1.3 !important;
+      margin-bottom: 14px !important;
+    }
+
+    .product-card p {
+      font-size: 0.95rem !important;
+      color: #5a4a4a !important;
+      line-height: 1.75 !important;
+      flex-grow: 1 !important;
+      margin-bottom: 24px !important;
+    }
+
+    .cta-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background-color: var(--rose) !important;
+      color: #fff !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.88rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.5px !important;
+      text-decoration: none !important;
+      padding: 13px 26px !important;
+      border-radius: 100px !important;
+      width: fit-content !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .cta-btn:hover {
+      background-color: #d44d64 !important;
+      transform: scale(1.03) !important;
+    }
+
+    .cta-btn svg {
+      width: 15px !important;
+      height: 15px !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      text-align: center !important;
+      margin: 10px 0 50px !important;
+    }
+
+    .section-divider span {
+      display: inline-block !important;
+      width: 40px !important;
+      height: 2px !important;
+      background: var(--blush) !important;
+      border-radius: 2px !important;
+      margin: 0 5px !important;
+      vertical-align: middle !important;
+    }
+
+    .section-divider span:nth-child(2) {
+      background: var(--rose) !important;
+      width: 60px !important;
+    }
+
+    /* ── OUTRO ── */
+    .outro {
+      background: linear-gradient(135deg, var(--deep) 0%, #3a1520 100%) !important;
+      color: #fff !important;
+      text-align: center !important;
+      padding: 64px 24px !important;
+      border-radius: 24px !important;
+      margin: 0 24px 60px !important;
+    }
+
+    .outro h3 {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+      margin-bottom: 14px !important;
+    }
+
+    .outro p {
+      font-size: 0.95rem !important;
+      color: rgba(255,255,255,0.65) !important;
+      max-width: 480px !important;
+      margin: 0 auto 28px !important;
+    }
+
+    .outro .cta-btn {
+      background-color: var(--blush) !important;
+      color: var(--deep) !important;
+      font-weight: 600 !important;
+    }
+
+    .outro .cta-btn:hover {
+      background-color: #f5b0b0 !important;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center !important;
+      padding: 24px !important;
+      font-size: 0.78rem !important;
+      color: var(--muted) !important;
+      border-top: 1px solid var(--border) !important;
+    }
+
+    footer a {
+      color: var(--rose) !important;
+      text-decoration: none !important;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .product-card {
+        grid-template-columns: 1fr !important;
+      }
+
+      .product-card .img-wrap {
+        min-height: 200px !important;
+      }
+
+      .product-card .content {
+        padding: 24px !important;
+      }
+
+      .outro {
+        margin: 0 12px 40px !important;
+        border-radius: 16px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="badge">Amazon Best Sellers · Beauty</div>
+    <h1>The Products Everyone Is <em>Obsessed</em> With Right Now</h1>
+    <p>Five bestselling skincare picks flying off Amazon's shelves — and exactly why your routine needs them.</p>
+  </header>
+
+  <!-- ARTICLES -->
+  <main class="container">
+
+    <div class="section-divider">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- Product 1 -->
+    <article class="product-card">
+      <div class="img-wrap">
+        <img src="image1.jpg" alt="Bioderma Sensibio H2O Micellar Water" />
+      </div>
+      <div class="content">
+        <div>
+          <p class="product-number">No. 01</p>
+          <h2>Bioderma Sensibio H2O Micellar Water</h2>
+          <p>A longtime staple in French pharmacies and professional makeup kits worldwide, this gentle micellar water removes makeup, impurities, and excess sebum without rinsing. Dermatologist-tested and fragrance-free — it's the effortless cleanse your skin will thank you for every single night.</p>
+        </div>
+        <a class="cta-btn" href="https://www.amazon.com/s?k=Bioderma+Sensibio+H2O+Micellar+Water&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Shop on Amazon
+        </a>
+      </div>
+    </article>
+
+    <!-- Product 2 -->
+    <article class="product-card">
+      <div class="img-wrap">
+        <img src="image2.jpg" alt="LOOPS DOUBLE TAKE Korean Face Masks" />
+      </div>
+      <div class="content">
+        <div>
+          <p class="product-number">No. 02</p>
+          <h2>LOOPS DOUBLE TAKE Korean Face Masks</h2>
+          <p>Korean skincare meets bold design with LOOPS DOUBLE TAKE face masks. These eye-catching pink sheet masks are packed with skin-loving ingredients designed to deeply hydrate and plump in just minutes. Whether you're prepping for a big event or treating yourself to a self-care Sunday, these masks deliver a spa-worthy experience right at home.</p>
+        </div>
+        <a class="cta-btn" href="https://www.amazon.com/s?k=LOOPS+DOUBLE+TAKE+Korean+Face+Masks&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Shop on Amazon
+        </a>
+      </div>
+    </article>
+
+    <!-- Product 3 -->
+    <article class="product-card">
+      <div class="img-wrap">
+        <img src="image3.jpg" alt="BIODANCE Hydro Cera-nol Real Deep Mask" />
+      </div>
+      <div class="content">
+        <div>
+          <p class="product-number">No. 03</p>
+          <h2>BIODANCE Hydro Cera-nol Real Deep Mask</h2>
+          <p>For next-level hydration, this standout bio-cellulose mask is formulated with ceramides and nourishing actives. It adheres closely to the face for maximum absorption. If you struggle with dry, dull, or dehydrated skin, this mask is practically a cheat code for a dewy, glass-skin glow.</p>
+        </div>
+        <a class="cta-btn" href="https://www.amazon.com/s?k=BIODANCE+Hydro+Cera-nol+Real+Deep+Mask&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Shop on Amazon
+        </a>
+      </div>
+    </article>
+
+    <!-- Product 4 -->
+    <article class="product-card">
+      <div class="img-wrap">
+        <img src="image4.jpg" alt="Summer Fridays Jet Lag Under Eye Patches" />
+      </div>
+      <div class="content">
+        <div>
+          <p class="product-number">No. 04</p>
+          <h2>Summer Fridays Jet Lag Under Eye Patches</h2>
+          <p>Tired eyes, meet your match. These cooling hydrogel patches combat puffiness, dark circles, and fine lines — the telltale signs of a hectic lifestyle. They deliver a burst of moisture and brightness beneath the eyes, making them a must-have whether you're recovering from a red-eye flight or just a rough night's sleep.</p>
+        </div>
+        <a class="cta-btn" href="https://www.amazon.com/s?k=Summer+Fridays+Jet+Lag+Under+Eye+Patches&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Shop on Amazon
+        </a>
+      </div>
+    </article>
+
+    <!-- Product 5 -->
+    <article class="product-card">
+      <div class="img-wrap">
+        <img src="image5.jpg" alt="LANEIGE Lip Sleeping Mask" />
+      </div>
+      <div class="content">
+        <div>
+          <p class="product-number">No. 05</p>
+          <h2>LANEIGE Lip Sleeping Mask</h2>
+          <p>No bestseller list is complete without the iconic LANEIGE Lip Sleeping Mask. This overnight treatment has amassed a near-cult following for its ability to transform dry, chapped lips into soft, pillowy perfection by morning. Infused with a Berry Mix Complex and antioxidants, it exfoliates and seals in moisture while you sleep. One jar and you'll never go back.</p>
+        </div>
+        <a class="cta-btn" href="https://www.amazon.com/s?k=LANEIGE+Lip+Sleeping+Mask&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Shop on Amazon
+        </a>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- OUTRO CTA -->
+  <section class="outro">
+    <h3>Your Skin Deserves the Best</h3>
+    <p>These five products aren't trending by accident. They're backed by thousands of glowing reviews and repeat buyers. Your routine upgrade starts now.</p>
+    <a class="cta-btn" href="https://www.amazon.com/s?k=beauty+bestsellers&tag=acutedealsy0b-20" target="_blank" rel="nofollow sponsored">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:15px;height:15px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Browse All on Amazon
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>This page contains affiliate links. As an Amazon Associate, I earn from qualifying purchases at no extra cost to you.</p>
+  </footer>
+
+</body>
+</html>
